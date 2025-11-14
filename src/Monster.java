@@ -1,4 +1,3 @@
-import java.util.ArrayList;
 import java.util.random.RandomGenerator;
 
 
@@ -23,8 +22,8 @@ class Monster {
     return Random.nextInt( DMG + 10, DMG + 31);
   }
 
-  public double RDMCritChance(double newCritChance) {
-    return Random.nextDouble( 0, 1);
+  public boolean istCrit() {
+    return Random.nextDouble(0,1) < CRIT;
 
   }
 }

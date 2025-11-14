@@ -1,12 +1,12 @@
 public class Kampfsystem {
 
   public void kampf() {
+
     munze munzewurf = new munze();
     int MunzeRDM = munzewurf.RDMMunze();
 
     Monsterwahl wahl = new Monsterwahl();
     wahl.Auswahl();
-
 
     if (MunzeRDM == 1) {
       System.out.println("Spieler 1 fängt an!\n");
@@ -16,14 +16,17 @@ public class Kampfsystem {
 
     while (true) {
       if (MunzeRDM == 1) {
-// Spieler 1 greift an
+        // Spieler 1 greift an
         int DMGA = wahl.spieler1.RDMDMG(wahl.spieler1.DMG);
+
+        if (wahl.spieler1.istCrit()) {
+          DMGA = (int) (DMGA * wahl.spieler1.CRITM);
+          System.out.println("Crit!💥");
+        }
+
         wahl.spieler2.HP -= DMGA;
         if (wahl.spieler2.HP <= 0) wahl.spieler2.HP = 0;
-        if (wahl.spieler1.CRIT == 0.1) {
-          DMGA = (int) (DMGA * wahl.spieler1.CRITM);
-          System.out.println("Crit!");
-        }
+
         System.out.println(wahl.spieler1.Name + " greift " + wahl.spieler2.Name + " an: " + DMGA + " Schaden!");
         System.out.println(wahl.spieler2.Name + " hat noch " + wahl.spieler2.HP + " HP\n");
 
@@ -35,8 +38,15 @@ public class Kampfsystem {
         MunzeRDM = 2;
 
       } else {
-// Spieler 2 greift an
+        // Spieler 2 greift an
         int DMGB = wahl.spieler2.RDMDMG(wahl.spieler2.DMG);
+
+
+        if (wahl.spieler2.istCrit()) {
+          DMGB = (int) (DMGB * wahl.spieler2.CRITM);
+          System.out.println("Crit!💥");
+        }
+
         wahl.spieler1.HP -= DMGB;
         if (wahl.spieler1.HP <= 0) wahl.spieler1.HP = 0;
 
