@@ -20,7 +20,10 @@ public class Kampfsystem {
         int DMGA = wahl.spieler1.RDMDMG(wahl.spieler1.DMG);
         wahl.spieler2.HP -= DMGA;
         if (wahl.spieler2.HP <= 0) wahl.spieler2.HP = 0;
-
+        if (wahl.spieler1.CRIT == 0.1) {
+          DMGA = (int) (DMGA * wahl.spieler1.CRITM);
+          System.out.println("Crit!");
+        }
         System.out.println(wahl.spieler1.Name + " greift " + wahl.spieler2.Name + " an: " + DMGA + " Schaden!");
         System.out.println(wahl.spieler2.Name + " hat noch " + wahl.spieler2.HP + " HP\n");
 
